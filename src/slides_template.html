@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Can rooftop solar loosen Metro Manila's dependence on fossil fuel, Middle East oil and Meralco? A building-level analysis.">
+<meta property="og:title" content="Metro Manila Rooftop Solar: Slides">
+<meta property="og:description" content="Can rooftop solar loosen Metro Manila's dependence on fossil fuel, Middle East oil and Meralco? A building-level analysis.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#a9b5a3">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%232f5d46%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%276%27 fill=%27%23d9822b%27/%3E%3C/svg%3E">
+<title>Metro Manila Rooftop Solar: Slides</title>
+<style>
+:root{--bg:#a9b5a3;--paper:#f3f1ea;--card:#f7f5ef;--card2:#eeebe2;--ink:#1d2a22;--mute:#6b766d;--line:#dcd8cb;--green:#2f5d46;--green2:#7a9a7f;--orange:#d9822b;--red:#c0503a;--blue:#3a6f8f;--gold:#c9a24a}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;color:var(--ink)}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
+.slide{position:absolute;inset:0;background:var(--paper);display:none;padding:76px 96px 70px;overflow:hidden}
+.slide.on{display:block;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.eyebrow{font-size:22px;letter-spacing:.14em;text-transform:uppercase;color:var(--green2);font-weight:600;margin-bottom:14px}
+h1{font-size:92px;line-height:1.02;letter-spacing:-2px;font-weight:500;margin:0}
+h2{font-size:60px;line-height:1.08;letter-spacing:-1.2px;font-weight:500;margin:0 0 34px}
+.lead{font-size:32px;line-height:1.4;color:var(--mute)}
+.card{background:var(--card);border-radius:30px;padding:34px 36px;box-shadow:0 2px 0 var(--line)}
+.tag{display:inline-block;font-size:20px;padding:5px 16px;border-radius:99px;background:#fbe3dc;color:#a04330;font-weight:600}
+.tag.g{background:#dfeadb;color:var(--green)}.tag.a{background:#fbeccf;color:#8a5a10}
+.src{position:absolute;left:96px;right:96px;bottom:44px;font-size:16px;color:var(--mute);line-height:1.4}
+.src a{color:var(--green)}
+/* title */
+.s-title{background:var(--green);color:#f3f1ea;padding:0}
+.s-title .art{position:absolute;right:-30px;top:60px;width:1200px;opacity:1}
+.s-title .art svg{width:100%;height:auto}
+.s-title .tx{position:absolute;left:96px;top:250px;width:800px}
+.s-title h1{color:#f7f5ef}
+.s-title .eyebrow{color:#c9d8c4}
+.s-title .lead{color:#d7e2d3;margin-top:34px;font-size:30px}
+.s-title .meta{position:absolute;left:96px;bottom:70px;font-size:22px;color:#b9cbb4;line-height:1.6}
+.s-title .badge{display:inline-block;background:rgba(255,255,255,.12);border-radius:99px;padding:8px 20px;font-size:21px;color:#e8efe4;margin-right:10px}
+/* problem */
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.pc{height:560px;display:flex;flex-direction:column}
+.pc .ic{width:68px;height:68px;border-radius:20px;background:var(--card2);display:grid;place-items:center;font-size:36px;margin-bottom:18px}
+.pc .num{font-size:104px;line-height:1;letter-spacing:-3px;font-weight:500}
+.pc .nl{font-size:25px;font-weight:600;margin:14px 0 12px}
+.pc p{margin:0 0 10px;font-size:24px;line-height:1.38;color:var(--mute)}
+.pc p b{color:var(--ink)}
+.hyp{display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:22px;align-items:center;margin-top:30px;background:#fff;border-radius:26px;padding:20px 30px}
+.hyp .l{font-size:22px;letter-spacing:.1em;text-transform:uppercase;color:var(--green2);font-weight:700}
+.hyp div.h{font-size:24px;line-height:1.3}
+.hyp div.h b{color:var(--green);margin-right:8px}
+/* dashboard */
+.s-dash{padding:0}
+.dbar{position:absolute;left:0;right:0;top:0;height:92px;display:flex;align-items:center;gap:20px;padding:0 60px;background:var(--paper)}
+.dbar h3{font-size:34px;font-weight:500;margin:0;letter-spacing:-.5px;white-space:nowrap}
+.dbar .jump{margin-left:auto;display:flex;gap:6px;background:#fff;border-radius:99px;padding:5px;box-shadow:0 1px 0 var(--line)}
+.dbar .jump button{white-space:nowrap;border:0;background:none;font-size:20px;padding:9px 20px;border-radius:99px;color:var(--mute);cursor:pointer}
+.dbar .jump button:hover{background:var(--card2);color:var(--ink)}
+.dbar small{font-size:19px;color:var(--mute);line-height:1.3}
+#dash{position:absolute;left:30px;right:30px;top:100px;bottom:26px;width:1860px;height:954px;border:0;border-radius:26px;background:#a9b5a3}
+/* solution */
+.sol{display:grid;grid-template-columns:1.05fr 1fr;gap:28px}
+.vr{display:grid;grid-template-columns:auto 1fr;gap:20px;padding:20px 0;border-bottom:2px solid var(--line);align-items:start}
+.vr:last-child{border:0}
+.vr b{display:block;font-size:28px;margin-bottom:4px}
+.vr span{font-size:23px;color:var(--mute);line-height:1.36}
+.vr .tag{margin-top:4px;min-width:176px;text-align:center}
+.act{display:flex;gap:20px;align-items:flex-start;padding:15px 0;border-bottom:2px solid var(--line)}
+.act:last-child{border:0}
+.act i{flex:none;width:48px;height:48px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-style:normal;font-size:24px;font-weight:600}
+.act b{display:block;font-size:26px}
+.act span{font-size:22px;color:var(--mute);line-height:1.32}
+.kp{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-bottom:26px}
+.kp .card{padding:22px 28px}
+.kp .v{font-size:56px;font-weight:500;letter-spacing:-1.5px;line-height:1.05}
+.kp .t{font-size:21px;color:var(--mute);margin-top:6px;line-height:1.3}
+.caveat{position:absolute;left:96px;right:96px;bottom:30px;background:#fbeccf;color:#7a5010;border-radius:16px;padding:12px 22px;font-size:19px;line-height:1.4}
+/* chrome */
+#nav{position:fixed;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:10px;align-items:center;z-index:10;pointer-events:none;opacity:0;transition:opacity .3s}
+body.show #nav,body.show #hint{opacity:1}
+#nav>*{pointer-events:auto}
+#nav button{border:0;background:rgba(255,255,255,.85);border-radius:99px;padding:6px 16px;font-size:14px;cursor:pointer;color:var(--ink)}
+#dots{display:flex;gap:8px}
+#dots i{width:9px;height:9px;border-radius:50%;background:rgba(29,42,34,.25);cursor:pointer}
+#dots i.on{background:var(--green);width:26px;border-radius:6px}
+#hint{position:fixed;right:14px;top:10px;font-size:12px;color:rgba(29,42,34,.6);z-index:10;opacity:0;transition:opacity .3s}
+@media print{
+  @page{size:1920px 1080px;margin:0}
+  html,body{overflow:visible;height:auto;background:#fff}
+  #stage{position:static;transform:none!important;width:auto;height:auto}
+  .slide{display:block!important;position:relative;width:1920px;height:1080px;page-break-after:always;animation:none}
+  #nav,#hint{display:none}
+}
+.flow{animation:fl 1.1s linear infinite}@keyframes fl{to{stroke-dashoffset:-16}}
+.puff{transform-box:fill-box;transform-origin:center;animation:pf 3.2s ease-in infinite}
+@keyframes pf{0%{transform:translateY(0) scale(.7);opacity:.9}100%{transform:translateY(-16px) scale(1.5);opacity:0}}
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 1 TITLE -->
+<section class="slide s-title on">
+  <div class="art">__CITY__</div>
+  <div class="tx">
+    <div class="eyebrow">Energy security · Metro Manila</div>
+    <h1>Can rooftop solar loosen Metro Manila's energy dependence?</h1>
+    <div class="lead">A building-level analysis of 296,000 rooftops, tested against fossil fuel, Middle East oil and Meralco dependence.</div>
+  </div>
+  <div class="meta">
+    <span class="badge">Manila Rooftop Project</span><span class="badge">November 2026</span><br>
+    Modelled technical potential · baselines are labelled estimates
+  </div>
+</section>
+
+<!-- 2 PROBLEM -->
+<section class="slide">
+  <div class="eyebrow">The problem</div>
+  <h2>Metro Manila's power rests on imported fossil fuel and rising bills</h2>
+  <div class="cols3">
+    <div class="card pc"><div class="ic">🏭</div><div class="num" style="color:var(--green)">62%</div>
+      <div class="nl">Fossil-fuel dependence</div>
+      <p>of Philippine power came from <b>coal in 2024</b>, with the share projected near 60% through 2027.</p>
+      <p>More than <b>80% of the coal burned is imported.</b></p></div>
+    <div class="card pc"><div class="ic">🛢</div><div class="num" style="color:var(--orange)">90–98%</div>
+      <div class="nl">Middle East oil dependence</div>
+      <p>of crude oil imports come from the Middle East (figures vary by source). The 2026 conflict triggered a fuel scare and a declared energy emergency.</p>
+      <p>Yet oil is only <b>~1% of power generation</b>: the exposure is in transport and industry.</p></div>
+    <div class="card pc"><div class="ic">⚡</div><div class="num" style="color:var(--blue)">64%</div>
+      <div class="nl">Meralco bill pressure</div>
+      <p>of a Meralco bill is the <b>generation charge</b>. Fuel costs and a weaker peso pushed it up again in 2026.</p>
+      <p><b>System loss (~5%)</b> and under-recoveries, collected over three years, are passed on to customers.</p></div>
+  </div>
+  <div class="hyp"><div class="l">We test</div>
+    <div class="h"><b>1</b>Solar can lessen fossil-fuel dependence</div>
+    <div class="h"><b>2</b>Solar can lessen Middle East dependence</div>
+    <div class="h"><b>3</b>Solar can lessen dependence on Meralco</div></div>
+  <div class="src">Sources: <a href="https://powerphilippines.com/?p=18141">IEA via Power Philippines</a> · <a href="https://gulfnews.com/business/energy/philippines-coal-dominates-power-generation-while-oil-is-only-at-1-so-why-are-electricity-rates-rising-1.500473171">Gulf News (DOE 2024)</a> · <a href="https://mb.com.ph/2026/03/03/philippines-among-worst-hit-by-oil-price-surge-amid-middle-east-tensionsing">Manila Bulletin</a> · <a href="https://www.gmanetwork.com/news/money/companies/985542/explainer-what-each-charge-in-the-meralco-bill-mean-for-customers/story/">GMA bill explainer</a> · <a href="https://www.philstar.com/headlines/2026/10/14/2563111/meralco-rates-month">Philstar</a>. Crude-import share varies 90–98% across reports.</div>
+</section>
+
+<!-- 3 DASHBOARD -->
+<section class="slide s-dash">
+  <div class="dbar"><h3>The dashboard</h3><small>Live: move the sliders and switch strategy.<br>Click outside the dashboard to use arrow keys again.</small>
+    <div class="jump"><button data-j="top">Overview</button><button data-j="scene">City scene</button><button data-j="where">Where</button><button data-j="scen">Scenarios</button><button data-j="hyp">Hypotheses</button></div></div>
+  <iframe id="dash" title="Metro Manila rooftop solar dashboard"></iframe>
+</section>
+
+<!-- 4 SOLUTION -->
+<section class="slide">
+  <div class="eyebrow">The solution</div>
+  <h2>Targeted rooftop solar, paired with storage and electrified transport</h2>
+  <div class="kp">
+    <div class="card"><div class="v">6.4 TWh</div><div class="t">technical potential per year from 5.19 GWp across 296k roofs</div></div>
+    <div class="card"><div class="v">50%</div><div class="t">of that energy sits on the largest 10% of roofs</div></div>
+    <div class="card"><div class="v">3.9 TWh</div><div class="t">if 25% of roofs install, largest first (after 85% derating)</div></div>
+    <div class="card"><div class="v" style="color:var(--green)">~19%</div><div class="t">of coal-fired supply serving Metro Manila, on placeholder baseline*</div></div>
+  </div>
+  <div class="sol">
+    <div class="card">
+      <div class="vr"><span class="tag g">Supported</span><div><b>Fossil-fuel dependence</b><span>Rooftops displace coal-fired supply and avoid about 2.7 Mt CO₂ a year at 25% adoption. Daytime only without storage.</span></div></div>
+      <div class="vr"><span class="tag">Weak, indirect</span><div><b>Middle East dependence</b><span>Oil is ~1% of power, so solar barely touches it. It only helps through EVs and replacing diesel generators.</span></div></div>
+      <div class="vr"><span class="tag g">Supported</span><div><b>Meralco dependence</b><span>About ₱37 bn a year of avoided grid purchases at 80% self-use and ₱12/kWh. Customers still need the grid at night.</span></div></div>
+    </div>
+    <div class="card">
+      <div class="act"><i>1</i><div><b>Start with commercial, industrial and public roofs</b><span>17% of buildings, about 40% of the energy, daytime demand.</span></div></div>
+      <div class="act"><i>2</i><div><b>Aggregate the largest roofs</b><span>About 30,000 roofs (10%) deliver half the potential.</span></div></div>
+      <div class="act"><i>3</i><div><b>Add batteries for the evening peak</b><span>Storage lets solar displace more than daytime coal.</span></div></div>
+      <div class="act"><i>4</i><div><b>Link to EVs and diesel replacement</b><span>The only credible route to Middle East oil impact.</span></div></div>
+      <div class="act"><i>5</i><div><b>Use net metering and design shared-roof models</b><span>For multi-family roofs, the largest block of potential.</span></div></div>
+    </div>
+  </div>
+  <div class="caveat"><b>*Read with care:</b> Metro Manila demand is derived (Meralco 2025 sales of ~54 TWh × an assumed 60% share). Technical potential only; the data is modelled and has no prices, hourly demand or coordinates, and covers about 296k buildings. Verify baselines before quoting percentages.</div>
+</section>
+
+</div>
+
+<div id="hint">← → or click to navigate · F fullscreen</div>
+<div id="nav"><button id="prev">‹ Prev</button><div id="dots"></div><button id="next">Next ›</button></div>
+
+<script>
+const DASH = __DASH__;
+const slides=[...document.querySelectorAll(".slide")], stage=document.getElementById("stage"), dots=document.getElementById("dots");
+let cur=0;
+slides.forEach((_,i)=>{const d=document.createElement("i");d.onclick=()=>go(i);dots.appendChild(d);});
+function go(i){cur=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,k)=>s.classList.toggle("on",k===cur));[...dots.children].forEach((d,k)=>d.classList.toggle("on",k===cur));
+  try{history.replaceState(null,"","#"+(cur+1))}catch(e){}
+  if(slides[cur].classList.contains("s-dash")) loadDash();}
+function fit(){const s=Math.min(innerWidth/1920,(innerHeight-0)/1080);stage.style.transform=`scale(${s})`;stage.style.left=((innerWidth-1920*s)/2)+"px";stage.style.top=((innerHeight-1080*s)/2)+"px";}
+let loaded=false;
+function loadDash(){ if(loaded) return; loaded=true; document.getElementById("dash").srcdoc=DASH; }
+document.addEventListener("keydown",e=>{
+  if(["ArrowRight","PageDown"," ","Enter"].includes(e.key)){e.preventDefault();go(cur+1)}
+  else if(["ArrowLeft","PageUp","Backspace"].includes(e.key)){e.preventDefault();go(cur-1)}
+  else if(e.key==="Home")go(0); else if(e.key==="End")go(slides.length-1);
+  else if(e.key==="f"||e.key==="F"){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()}
+});
+document.getElementById("prev").onclick=()=>go(cur-1); document.getElementById("next").onclick=()=>go(cur+1);
+document.querySelectorAll(".jump button").forEach(b=>b.onclick=()=>{
+  try{const w=document.getElementById("dash").contentWindow, el=b.dataset.j==="top"?null:w.document.getElementById(b.dataset.j);
+      el?el.scrollIntoView({behavior:"smooth",block:"start"}):w.scrollTo({top:0,behavior:"smooth"});}catch(e){}
+});
+let hideT;addEventListener("mousemove",()=>{document.body.classList.add("show");clearTimeout(hideT);hideT=setTimeout(()=>document.body.classList.remove("show"),2200)});
+addEventListener("resize",fit); fit();
+const h=parseInt(location.hash.slice(1)); go(h>=1&&h<=slides.length?h-1:0);
+</script>
+</body>
+</html>

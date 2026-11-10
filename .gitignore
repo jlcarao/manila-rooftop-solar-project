@@ -1,0 +1,6 @@
+# Large or licence-unclear data: keep local, do not commit
+*.csv
+# Working files
+.DS_Store
+.vercel
+node_modules

@@ -1,0 +1,7 @@
+# Only /public is served. Keep large data and working files out of the upload.
+*.csv
+*.ipynb
+*.pdf
+rooftop_command_center*.html
+rooftop_slides.html
+.DS_Store
