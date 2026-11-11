@@ -120,7 +120,7 @@ svg text{font-family:inherit}
     <div><label>Tariff (PHP/kWh) <b id="vTa"></b></label><input id="ta" type="range" min="6" max="20" step=".5" value="12"></div>
     <div><label>Metro Manila share of Meralco sales ⚠ <b id="vMm"></b></label><input id="mm" type="range" min="40" max="80" value="60"></div>
     <div><label>Coal share of grid supply ⚠ <b id="vCo"></b></label><input id="co" type="range" min="50" max="75" value="63"></div>
-    <div><label>Metro Manila demand (derived) <b id="vDem"></b></label><div style="font-size:11px;color:var(--mute);margin-top:6px">= Meralco 2025 sales (54.0 TWh) × share</div></div>
+    <div><label>Metro Manila demand (derived) <b id="vDem"></b></label><div style="font-size:11px;color:var(--mute);margin-top:6px">= Meralco 2025 sales (54,000,000,000 kWh) × share</div></div>
     <div><label style="margin-bottom:6px">Who installs first?</label>
       <div class="seg" id="strat"><button data-s="rand">Random roofs</button><button class="on" data-s="top">Largest first</button></div></div>
   </div>
@@ -159,7 +159,7 @@ svg text{font-family:inherit}
 
 <!-- KPIs -->
 <div class="grid kpis">
-  <div class="card kpi"><h3>Annual energy <span>GWh/yr</span></h3><div class="big" id="kE"></div><span class="tag g" id="kEt"></span>
+  <div class="card kpi"><h3>Annual energy <span>kWh/yr</span></h3><div class="big" id="kE" style="font-size:30px;margin:10px 0 6px"></div><span class="tag g" id="kEt"></span>
     <div class="stack" id="kStack"></div><div class="legend" id="kLeg"></div></div>
   <div class="card kpi"><h3>Coal-fired supply displaced <span>Metro Manila</span></h3><div class="big" id="kC"></div><span class="tag" id="kCt"></span>
     <div style="margin-top:12px" class="legend"><div><span>Share of Metro Manila demand</span><b id="kN"></b></div><div><span>CO₂ avoided</span><b id="kCo"></b></div><div><span>Max oil-fired supply displaceable</span><b id="kO"></b></div></div></div>
@@ -178,14 +178,14 @@ svg text{font-family:inherit}
 
 <div class="grid two">
   <div class="card"><h3>Priority roofs <span>10 largest in the data</span></h3>
-    <table><thead><tr><th>ID</th><th>Type</th><th class="n">Roof m²</th><th class="n">kWp</th><th class="n">MWh/yr</th></tr></thead><tbody id="topT"></tbody></table></div>
+    <table><thead><tr><th>ID</th><th>Type</th><th class="n">Roof m²</th><th class="n">kWp</th><th class="n">kWh/yr</th></tr></thead><tbody id="topT"></tbody></table></div>
   <div class="card"><h3>Roof size classes <span>share of capacity</span></h3><div id="sizeBars"></div></div>
 </div>
 
 <!-- SCENARIOS -->
 <div class="grid two" id="scen">
   <div class="card"><h3>Adoption scenarios <span>vs Metro Manila · current assumptions</span></h3>
-    <table><thead><tr><th>Adoption</th><th class="n">GWh</th><th class="n">% MM demand</th><th class="n">% coal supply</th><th class="n">CO₂ Mt</th><th class="n">PHP bn</th></tr></thead><tbody id="scT"></tbody></table></div>
+    <table><thead><tr><th>Adoption</th><th class="n">kWh</th><th class="n">% MM demand</th><th class="n">% coal supply</th><th class="n">CO₂ Mt</th><th class="n">PHP bn</th></tr></thead><tbody id="scT"></tbody></table></div>
   <div class="card"><h3>Sensitivity <span>avoided purchase, PHP bn/yr</span></h3><table class="heat" id="heat"></table>
     <div style="font-size:11px;color:var(--mute);margin-top:6px">Rows: derating. Columns: self-consumption. At current adoption.</div></div>
 </div>
@@ -205,7 +205,7 @@ svg text{font-family:inherit}
 
 <div class="card" id="method"><h3>Method and limits <span>read before quoting numbers</span></h3>
   <div class="legend" id="meth"></div>
-  <div class="warnbox">⚠ <b>Metro Manila baseline.</b> No source found gives Metro Manila's own electricity consumption. This dashboard derives it as Meralco's 2025 distribution sales (about 54 TWh, which also cover nearby provinces) multiplied by an assumed Metro Manila share (default 60%, my assumption). Replace it with DOE, PSA or Meralco city-level figures. The coal share (63%) is the Luzon grid in 2023 per DOE and is not specific to Metro Manila. Oil share (1%) and emission factor (0.70 kgCO₂/kWh) are also unverified placeholders.</div>
+  <div class="warnbox">⚠ <b>Metro Manila baseline.</b> No source found gives Metro Manila's own electricity consumption. This dashboard derives it as Meralco's 2025 distribution sales (about 54,000,000,000 kWh, which also cover nearby provinces) multiplied by an assumed Metro Manila share (default 60%, my assumption). Replace it with DOE, PSA or Meralco city-level figures. The coal share (63%) is the Luzon grid in 2023 per DOE and is not specific to Metro Manila. Oil share (1%) and emission factor (0.70 kgCO₂/kWh) are also unverified placeholders.</div>
   <div class="warnbox">⚠ <b>Coverage.</b> The dataset is treated as Metro Manila, as instructed. It holds about 296k usable buildings, which is likely well below the real building stock, so potential may be understated. Confirm what area and sample it covers.</div>
 </div>
 
@@ -369,11 +369,11 @@ function drawCity(cur,tgt,p,c){
   coalEl.setAttribute("stroke-width",(2.6*(1-.75*disp)).toFixed(2)); coalEl.setAttribute("stroke-opacity",(.35+.6*(1-disp)).toFixed(2));
   SC=1;TX=0;TY=0;const a=pr(-3.2,6,5.2), b2=pr(27.3,12,0);
   $("cLab").innerHTML=label(a[0],a[1],"Coal-fired supply",`${fmt(c.pctCoal,1)}% displaced`,"#55605a")+label(b2[0]+30,b2[1]+62,"Metro Manila grid",`${fmt(c.pctMM,1)}% of demand from rooftops`,"#d9822b");
-  $("chips").innerHTML=T.map((t,i)=>`<div class="chip"><i class="dot" style="background:${HEX[t.building_type]}"></i><b>${TITLE[t.building_type]}</b><span>${fmt(tgt.f[i]*100,0)}% of roofs · ${fmt(tgt.gwh[i],0)} GWh/yr</span></div>`).join("");
+  $("chips").innerHTML=T.map((t,i)=>`<div class="chip"><i class="dot" style="background:${HEX[t.building_type]}"></i><b>${TITLE[t.building_type]}</b><span>${fmt(tgt.f[i]*100,0)}% of roofs<br>${fmt(tgt.kwh[i],0)} kWh/yr</span></div>`).join("");
 }
 let cityCur=null, cityRaf=0;
 function updateCity(p,c){
-  const tgt={f:T.map(t=>selType(t,p.a).b/t.buildings), gwh:T.map(t=>selType(t,p.a).e*p.dr/1e6), dr:p.dr, coal:c.pctCoal};
+  const tgt={f:T.map(t=>selType(t,p.a).b/t.buildings), kwh:T.map(t=>selType(t,p.a).e*p.dr), dr:p.dr, coal:c.pctCoal};
   if(!cityCur) cityCur={f:T.map(()=>0),dr:p.dr,coal:0};
   const from={f:[...cityCur.f],dr:cityCur.dr,coal:cityCur.coal}, t0=performance.now(), dur=450;
   if(typeof cancelAnimationFrame==="function") cancelAnimationFrame(cityRaf);
@@ -392,12 +392,12 @@ function render(){
   const p=P(), c=calc(p);
   $("vAd").textContent=fmt(p.ad*100,0)+"%"; $("vDr").textContent=fmt(p.dr*100,0)+"%"; $("vSu").textContent=fmt(p.su*100,0)+"%";
   $("vTa").textContent="₱"+fmt(p.ta,1); $("vMm").textContent=fmt(p.mm*100,0)+"%"; $("vCo").textContent=fmt(p.co*100,0)+"%";
-  $("vDem").textContent=fmt(c.dem,1)+" TWh";
+  $("vDem").textContent=fmt(c.dem*1e9,0)+" kWh";
   $("nB").textContent=D.n.toLocaleString();
 
   const roofs=Math.round(c.roofs), stratTxt = strat==="top"?"largest roofs first":"randomly chosen roofs";
-  $("brief").innerHTML = `At <b>${fmt(p.ad*100,0)}%</b> adoption (${roofs.toLocaleString()} roofs, ${stratTxt}), rooftop solar could generate <b>${fmt(c.kwh/1e6,0)} GWh</b> a year: <b>${fmt(c.pctMM,1)}%</b> of Metro Manila's electricity demand and <b>${fmt(c.pctCoal,1)}%</b> of the coal-fired supply serving it (placeholder baseline).`;
-  $("alertOil").textContent = ` Oil is only ~1% of power, so at most ${fmt(c.oil,2)} TWh of Metro Manila's oil-fired supply could be displaced.`;
+  $("brief").innerHTML = `At <b>${fmt(p.ad*100,0)}%</b> adoption (${roofs.toLocaleString()} roofs, ${stratTxt}), rooftop solar could generate <b>${fmt(c.kwh,0)} kWh</b> a year: <b>${fmt(c.pctMM,1)}%</b> of Metro Manila's electricity demand and <b>${fmt(c.pctCoal,1)}%</b> of the coal-fired supply serving it (placeholder baseline).`;
+  $("alertOil").textContent = ` Oil is only ~1% of power, so at most ${fmt(c.oil*1e9,0)} kWh of Metro Manila's oil-fired supply could be displaced.`;
   const cf=totKwh/totKwp/8760*100, us=D.usable_km2/D.roof_km2*100;
   $("hCf").textContent=fmt(cf,1)+"%"; $("bCf").style.width=Math.min(cf/25*100,100)+"%";
   $("hUs").textContent=fmt(us,1)+"%"; $("bUs").style.width=us+"%";
@@ -410,13 +410,13 @@ function render(){
   T.forEach(t=>{const e=selType(t,p.a).e*p.dr/8760/1000; (t.building_type.includes("residential")?grp.res+=e:grp.cip+=e)});
   $("gLeg").innerHTML=`<div><span><i style="background:var(--c-multi)"></i>Residential</span><b>${fmt(grp.res,0)} MW</b></div><div><span><i style="background:var(--c-com)"></i>Comm / Ind / Public</span><b>${fmt(grp.cip,0)} MW</b></div>`;
 
-  $("kE").textContent=fmt(c.kwh/1e6,0); $("kEt").textContent=fmt(c.mwp,0)+" MWp equipped";
+  $("kE").textContent=fmt(c.kwh,0); $("kEt").textContent=fmt(c.mwp,0)+" MWp equipped";
   const ss=T.map(t=>selType(t,p.a).e), sum=ss.reduce((a,b)=>a+b,0)||1;
   $("kStack").innerHTML=T.map((t,i)=>`<i style="width:${ss[i]/sum*100}%;background:${HEX[t.building_type]}"></i>`).join("");
-  $("kLeg").innerHTML=T.map((t,i)=>`<div><span><i style="background:${HEX[t.building_type]}"></i>${NICE(t.building_type)}</span><b>${fmt(ss[i]*p.dr/1e6,0)} GWh</b></div>`).join("");
+  $("kLeg").innerHTML=T.map((t,i)=>`<div><span><i style="background:${HEX[t.building_type]}"></i>${NICE(t.building_type)}</span><b>${fmt(ss[i]*p.dr,0)} kWh</b></div>`).join("");
   $("kC").textContent=fmt(c.pctCoal,1)+"%"; $("kCt").textContent=c.pctCoal>10?"meaningful":"modest";
-  $("kN").textContent=fmt(c.pctMM,1)+"%"; $("kCo").textContent=fmt(c.co2,2)+" Mt/yr"; $("kO").textContent=fmt(c.oil,2)+" TWh";
-  $("kM").textContent=fmt(c.pctMM,1)+"%"; $("kP").textContent="₱"+fmt(c.php,1)+" bn"; $("kS").textContent=fmt(c.selfKwh/1e6,0)+" GWh"; $("kX").textContent=fmt(c.expKwh/1e6,0)+" GWh";
+  $("kN").textContent=fmt(c.pctMM,1)+"%"; $("kCo").textContent=fmt(c.co2,2)+" Mt/yr"; $("kO").textContent=fmt(c.oil*1e9,0)+" kWh";
+  $("kM").textContent=fmt(c.pctMM,1)+"%"; $("kP").textContent="₱"+fmt(c.php,1)+" bn"; $("kS").textContent=fmt(c.selfKwh,0)+" kWh"; $("kX").textContent=fmt(c.expKwh,0)+" kWh";
   $("kK").textContent=fmt(shareE(p.a)*100,0)+"%";
   miniPareto(p.a);
 
@@ -460,11 +460,11 @@ function sizeBars(){
    <div class="bar"><i style="width:${s.kwp/tot*100}%;background:var(--green2)"></i></div></div>`).join("");
 }
 function topTable(){
-  $("topT").innerHTML=D.top.map(r=>`<tr><td>${r.id}</td><td><i class="dot" style="background:${HEX[r.type]}"></i>${NICE(r.type)}</td><td class="n">${r.area.toLocaleString()}</td><td class="n">${r.kwp.toLocaleString()}</td><td class="n">${r.mwh.toLocaleString()}</td></tr>`).join("");
+  $("topT").innerHTML=D.top.map(r=>`<tr><td>${r.id}</td><td><i class="dot" style="background:${HEX[r.type]}"></i>${NICE(r.type)}</td><td class="n">${r.area.toLocaleString()}</td><td class="n">${r.kwp.toLocaleString()}</td><td class="n">${Math.round(r.mwh*1000).toLocaleString()}</td></tr>`).join("");
 }
 function scen(p){
   $("scT").innerHTML=[5,10,25,50,100].map(a=>{const c=calc(p,a);
-   return `<tr><td><b>${a}%</b></td><td class="n">${fmt(c.kwh/1e6,0)}</td><td class="n">${fmt(c.pctMM,1)}</td><td class="n">${fmt(c.pctCoal,1)}</td><td class="n">${fmt(c.co2,2)}</td><td class="n">${fmt(c.php,1)}</td></tr>`}).join("");
+   return `<tr><td><b>${a}%</b></td><td class="n">${fmt(c.kwh,0)}</td><td class="n">${fmt(c.pctMM,1)}</td><td class="n">${fmt(c.pctCoal,1)}</td><td class="n">${fmt(c.co2,2)}</td><td class="n">${fmt(c.php,1)}</td></tr>`}).join("");
 }
 function heat(p){
   const dr=[.6,.7,.8,.9,1], su=[.5,.65,.8,.95], base=selTot(p.a).e;
@@ -473,7 +473,7 @@ function heat(p){
 }
 function text(p,c){
   $("h1").textContent=`${fmt(c.pctCoal,1)}% of the coal-fired supply serving Metro Manila displaceable, ${fmt(c.co2,2)} Mt CO₂ avoided at this setting. Daytime only without storage.`;
-  $("h2").textContent=`Oil is ~1% of power: at most ${fmt(c.oil,2)} TWh of Metro Manila supply displaceable. The exposure sits in transport and industrial fuel, which needs electrification to be reached.`;
+  $("h2").textContent=`Oil is ~1% of power: at most ${fmt(c.oil*1e9,0)} kWh of Metro Manila supply displaceable. The exposure sits in transport and industrial fuel, which needs electrification to be reached.`;
   $("h3").textContent=`₱${fmt(c.php,1)} bn/yr of avoided grid purchases, equal to ${fmt(c.pctMM,1)}% of Metro Manila demand. Customers still need the grid at night and for distribution.`;
   const cip=T.filter(t=>!t.building_type.includes("residential")), cb=cip.reduce((a,t)=>a+t.buildings,0), ce=cip.reduce((a,t)=>a+t.kwh,0);
   $("a1").textContent=`${fmt(cb/totB*100,0)}% of buildings hold ${fmt(ce/totKwh*100,0)}% of energy, with daytime demand.`;
@@ -483,7 +483,7 @@ function methods(c,p){
   $("meth").innerHTML=[
    `<div><span>Rows in source / after cleaning</span><b>${D.raw_rows.toLocaleString()} / ${D.n.toLocaleString()}</b></div>`,
    `<div><span>Dropped: zero-capacity roofs</span><b>${D.dropped.toLocaleString()}</b></div>`,
-   `<div><span>Metro Manila demand baseline</span><b>${fmt(FRANCHISE_TWH,1)} TWh × ${fmt(p.mm*100,0)}% = ${fmt(c.dem,1)} TWh</b></div>`,
+   `<div><span>Metro Manila demand baseline</span><b>${fmt(FRANCHISE_TWH*1e9,0)} kWh × ${fmt(p.mm*100,0)}% = ${fmt(c.dem*1e9,0)} kWh</b></div>`,
    `<div><span>City scene</span><b>Schematic: 30 lots, mix = dataset shares</b></div>`,
    `<div><span>Data type</span><b>Modelled (constant 0.19 kWp/m²)</b></div>`,
    `<div><span>Scope</span><b>Technical potential only</b></div>`,
